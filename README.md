@@ -1,49 +1,69 @@
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bde9e4c8-70a1-46a3-ac5f-d05d3ed93477" alt="Codificando..." />
+</p>
+
+
 # 🚀 Mini Mundo - Projeto de Laboratório para Testes e Avaliações Técnicas  
 
 ## 📌 Sobre o Projeto  
 
 O **Mini Mundo** é um projeto de laboratório destinado a testes e implementações de validação técnica para seleção de desenvolvedores. Ele permite avaliar candidatos por meio da implementação de **issues específicas**, garantindo que sigam boas práticas de desenvolvimento, versionamento e deploy contínuo.  
 
-Cada avaliação requer que o candidato implemente uma ou mais **issues**, seguindo um fluxo padronizado que envolve:  
-
-✅ **Uso de Conventional Commit e Gitflow** para organização do histórico de commits.  
-✅ **Uso de JWT** para validação das requisições autenticadas.  
-✅ **Criação de uma imagem Docker** para execução do projeto após a compilação.  
-✅ **Registro da imagem no Docker Hub** para facilitar a distribuição.  
-✅ **Configuração de CI/CD** para automação do build e versionamento da imagem.  
-
-## 🛠️ Requisitos da Avaliação  
-
-Durante a implementação, o candidato deverá:  
-
-1️⃣ Implementar **uma ou duas issues**, conforme definido no processo de avaliação.  
-2️⃣ Seguir a convenção de commits **Conventional Commit** e o fluxo **Gitflow**.  
-3️⃣ Criar uma **imagem Docker** do projeto após a compilação.  
-4️⃣ Registrar a imagem no **Docker Hub**.  
-5️⃣ Implementar **CI/CD** para que, ao realizar um commit na branch `master` contendo uma **tag no padrão**:  
-
-   ```regex
-   /^(v|V)?(\d+\.)?(\d+\.)?(\*|\d+).?(hf\d+|Hf\d+|HF\d+)?$/
-   ```  
-   
-   a pipeline gere e publique automaticamente uma **nova imagem Docker no Docker Hub**.  
-
 ## 🔥 Tecnologias Utilizadas  
 
-- **Git e Gitflow** 📂 (Organização do versionamento)  
-- **Docker** 🐳 (Containerização do projeto)  
-- **Docker Hub** 📦 (Registro das imagens)  
-- **CI/CD** ⚡ (Automação de build e deploy)  
+    🔐 Autenticação com JWT
 
-## 🎯 Objetivo  
+    🐳 (Containerização do projeto)  
 
-Este projeto simula um ambiente de desenvolvimento real, avaliando as habilidades do candidato em:  
+    ⚡ (Automação de build e deploy)  CI/CD
 
-🔹 Implementação de funcionalidades conforme **requisitos técnicos**.  
-🔹 Uso correto de **versionamento e boas práticas de Git**.  
-🔹 **Criação e publicação de imagens Docker** para execução do projeto.  
-🔹 Automação de processos via **CI/CD** para gerar versões consistentes.  
+    📂 (Organização do versionamento)
 
-## 🚀 Como Participar?  
+    📦 (Registro das imagens)  **Docker Hub** 
 
-Os candidatos receberão **instruções específicas** para a implementação das **issues** e deverão seguir as diretrizes acima para concluir a avaliação com sucesso.  
+    🛠️ NodeJs Vite do Laravel
+
+🚀 Como rodar o projeto localmente
+## 1️⃣ Clone o projeto
+
+    -git clone https://github.com/melquisoftwarenigeer/o-mini-mundo.git
+    -cd pastadoprojeto\
+
+## 2️⃣ Instale as dependências Laravel
+
+    -cp .env.example .env
+    -composer install
+    -npm install
+    -php artisan key:generate
+    -php artisan jwt:secret
+
+## 3️⃣ Configure o banco de dados (PostgreSQL)
+
+    -No arquivo .env, configure com os dados do seu PostgreSQL
+      Certifique que você criou o banco no seu SGBD
+
+    -Se precisar testar na sua aplicação a conexão com banco de dados foi bem sucedida, siga esse passo no terminal:
+      php artisan tinker
+      DB::connection()->getPdo();
+      exit
+
+    -Rode as migrações:
+      php artisan migrate:refresh
+
+## 4️⃣ Deseja Subir o Servidor com Docker?
+
+   - Certifique-se de que a porta 5432 esteja livre (PostgreSQL)
+
+    Arquivos Docker já prontos e configurados: 📁
+    ├──docker-compose.yml 
+    ├──/dockerfiles 
+    
+    Execute 🧑‍💻 
+     -docker compose up -d
+     -npm run dev (VITE)
+
+## 5️⃣ Deseja Subir o Servidor com Laravel Artisan?
+    
+    -php artisan serve 
+    -npm run dev (VITE)

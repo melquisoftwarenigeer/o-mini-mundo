@@ -1,0 +1,52 @@
+services:
+  application:
+    build:
+      context: .
+      dockerfile: dockerfiles/php/Dockerfile
+    image: application
+    container_name: application
+    tty: true
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/var/www
+    networks:
+      - laravel_app
+    depends_on:
+      - postgres # Garante que o PostgreSQL esteja pronto antes do PHP command: ["wait-for-it", "postgres:5432", "--", "php-fpm"]
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www
+      - ./dockerfiles/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - laravel_app
+    depends_on:
+      - application # Garante que o serviço PHP esteja pronto antes do Nginx
+
+  postgres:
+    # Serviço do banco de dados PostgreSQL
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: melqui
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: bdteste
+    networks:
+      - laravel_app
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Volumes persistentes para os dados
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  laravel_app:
+    driver: bridge
