@@ -37,7 +37,12 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'session',
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ],
+    
+        'api' => [
+            'driver' => 'jwt',  // Usando o driver jwt para a autenticação via token
             'provider' => 'users',
         ],
     ],
