@@ -1,0 +1,67 @@
+name: Laravel CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Passo 1: Checar o código
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      # Passo 2: Configurar PHP
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, bcmath, zip, pdo, pdo_sqlite
+          coverage: xdebug
+
+      # Passo 3: Instalar dependências do PHP
+      - name: Install PHP dependencies
+        run: |
+          composer install --no-interaction --prefer-dist
+
+      # Passo 3.1: Setar o arquivo de ambiente para testing
+      - name: Set environment file to testing
+        run: |
+          cp .env.testing.example .env      
+
+      # Passo 3.2: Instalar dependências do front-end (Node.js, Vite)
+      # NOVO: Configura o Node.js no ambiente do GitHub Actions
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # ou a versão que você está utilizando
+
+      # NOVO: Instala as dependências do front-end (Vite, etc.)
+      - name: Install front-end dependencies
+        run: |
+          npm install  # Isso instalará todas as dependências do Vite (e front-end)
+
+      # Passo 4: Garantir que o banco de dados SQLite exista
+      - name: Create SQLite database if not exists
+        run: |
+          touch database/database.sqlite
+
+      # Passo 5: Rodar o Vite para gerar os assets (build front-end)
+      # NOVO: Gera os arquivos estáticos do Vite (como manifest.json)
+      - name: Build front-end assets
+        run: |
+          npm run build  # Isso irá gerar o manifest.json e os arquivos no diretório public/build
+
+      # Passo 6: Rodar as migrações e os testes
+      - name: Run migrations and tests
+        run: |
+          php artisan key:generate --env=testing
+          php update-jwt-secret.php
+          php artisan migrate
+          php artisan test
