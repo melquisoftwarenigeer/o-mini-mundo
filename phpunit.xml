@@ -17,15 +17,28 @@
             <directory suffix=".php">./app</directory>
         </include>
     </coverage>
-    <php>
+   <php>
+        <!-- Ambiente de Teste -->
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_DRIVER" value="array"/>
-        <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <env name="DB_DATABASE" value=":memory:"/> -->
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
+
+        <!-- Configuração para usar o SQLite em memória durante os testes -->
+        <!-- <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/> -->
+
+        <!-- Se quiser configurar um banco real (exemplo: PostgreSQL), descomente as linhas abaixo -->
+     
+        <!-- <env name="DB_CONNECTION" value="pgsql"/>
+        <env name="DB_HOST" value="127.0.0.1"/>
+        <env name="DB_PORT" value="5432"/>
+        <env name="DB_DATABASE" value="LaravelPipe"/>
+        <env name="DB_USERNAME" value="postgres"/>
+        <env name="DB_PASSWORD" value="020385"/> -->
+       
     </php>
 </phpunit>
