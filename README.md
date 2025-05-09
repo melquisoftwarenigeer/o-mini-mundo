@@ -1,66 +1,49 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Mini Mundo - Projeto de Laboratório para Testes e Avaliações Técnicas  
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📌 Sobre o Projeto  
 
-## About Laravel
+O **Mini Mundo** é um projeto de laboratório destinado a testes e implementações de validação técnica para seleção de desenvolvedores. Ele permite avaliar candidatos por meio da implementação de **issues específicas**, garantindo que sigam boas práticas de desenvolvimento, versionamento e deploy contínuo.  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Cada avaliação requer que o candidato implemente uma ou mais **issues**, seguindo um fluxo padronizado que envolve:  
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+✅ **Uso de Conventional Commit e Gitflow** para organização do histórico de commits.  
+✅ **Uso de JWT** para validação das requisições autenticadas.  
+✅ **Criação de uma imagem Docker** para execução do projeto após a compilação.  
+✅ **Registro da imagem no Docker Hub** para facilitar a distribuição.  
+✅ **Configuração de CI/CD** para automação do build e versionamento da imagem.  
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Requisitos da Avaliação  
 
-## Learning Laravel
+Durante a implementação, o candidato deverá:  
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1️⃣ Implementar **uma ou duas issues**, conforme definido no processo de avaliação.  
+2️⃣ Seguir a convenção de commits **Conventional Commit** e o fluxo **Gitflow**.  
+3️⃣ Criar uma **imagem Docker** do projeto após a compilação.  
+4️⃣ Registrar a imagem no **Docker Hub**.  
+5️⃣ Implementar **CI/CD** para que, ao realizar um commit na branch `master` contendo uma **tag no padrão**:  
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+   ```regex
+   /^(v|V)?(\d+\.)?(\d+\.)?(\*|\d+).?(hf\d+|Hf\d+|HF\d+)?$/
+   ```  
+   
+   a pipeline gere e publique automaticamente uma **nova imagem Docker no Docker Hub**.  
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🔥 Tecnologias Utilizadas  
 
-## Laravel Sponsors
+- **Git e Gitflow** 📂 (Organização do versionamento)  
+- **Docker** 🐳 (Containerização do projeto)  
+- **Docker Hub** 📦 (Registro das imagens)  
+- **CI/CD** ⚡ (Automação de build e deploy)  
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## 🎯 Objetivo  
 
-### Premium Partners
+Este projeto simula um ambiente de desenvolvimento real, avaliando as habilidades do candidato em:  
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+🔹 Implementação de funcionalidades conforme **requisitos técnicos**.  
+🔹 Uso correto de **versionamento e boas práticas de Git**.  
+🔹 **Criação e publicação de imagens Docker** para execução do projeto.  
+🔹 Automação de processos via **CI/CD** para gerar versões consistentes.  
 
-## Contributing
+## 🚀 Como Participar?  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Os candidatos receberão **instruções específicas** para a implementação das **issues** e deverão seguir as diretrizes acima para concluir a avaliação com sucesso.  
