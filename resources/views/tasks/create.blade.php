@@ -30,6 +30,11 @@
             <label for="predecessor_id" class="form-label">Tarefa Predecessora (opcional)</label>
             <select class="form-select" id="predecessor_id">
                 <option value="">Nenhuma</option>
+                @foreach($tasks as $t)
+                <option value="{{ $t->id }}" {{ (old('predecessor_id', $task->predecessor_id ?? '') == $t->id) ? 'selected' : '' }}>
+                    {{ $t->description }}
+                </option>
+                @endforeach
             </select>
         </div>
 
@@ -49,7 +54,9 @@
         try {
             // Carrega possíveis tarefas predecessoras
             const response = await axios.get(`/api/projects/${projectId}/tasks`, {
-                headers: { Authorization: `Bearer ${token}` }
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
 
             const tasks = response.data.data;
@@ -77,7 +84,9 @@
 
         try {
             const response = await axios.post('/api/tasks', data, {
-                headers: { Authorization: `Bearer ${token}` }
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
 
             alertContainer.innerHTML = `<div class="alert alert-success">${response.data.message}</div>`;

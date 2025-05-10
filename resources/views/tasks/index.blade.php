@@ -36,6 +36,7 @@
     <table class="table table-bordered table-hover" id="task-table" style="display: none;">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Nome</th>
                 <th>Status</th>
                 <th>Periodo</th>
@@ -116,6 +117,7 @@
 
             tbody.innerHTML += `
                 <tr>
+                    <td>${task.id}</td>
                     <td>${task.description}</td>
                     <td>${task.status}</td>
                     <td>${task.start_date.split('T')[0] ?? '-'} -> ${task.end_date.split('T')[0] ?? '-'}</td>

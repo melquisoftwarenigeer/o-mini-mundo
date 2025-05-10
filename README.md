@@ -59,11 +59,15 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
     ├──docker-compose.yml 
     ├──/dockerfiles 
     
-    Execute 🧑‍💻 
-     -docker compose up -d
-     -npm run dev (VITE)
+    Execute 🧑 
+    🖥️ Terminal 1 — Backend 
+      -docker compose up -d
+    🖥️ Terminal 2 — Frontend (Vite)
+      -npm run dev (VITE)
 
 ## 5️⃣ Deseja Subir o Servidor com Laravel Artisan?
-    
-    -php artisan serve 
-    -npm run dev (VITE)
+
+    🖥️ Terminal 1 — Backend 
+      -php artisan serve 
+    🖥️ Terminal 2 — Frontend (Vite)
+      -npm run dev (VITE)
