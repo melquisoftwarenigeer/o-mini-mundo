@@ -19,11 +19,10 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $projectId = $request->input('project_id');
-
-        if (!$projectId) {
-
+       
+        if (!$projectId) {          
             try {
-                $tasks = Task::with('project', 'predecessor')->get();
+                $tasks = Task::with('project', 'predecessor')->orderBy('id','asc')->get();
 
                 return response()->json([
                     'status' => 'success',
@@ -52,6 +51,7 @@ class TaskController extends Controller
             // Busca tarefas apenas do projeto especificado
             $tasks = Task::with('project', 'predecessor')
                 ->where('project_id', $projectId)
+                ->orderBy('id','asc')
                 ->get();
 
             return response()->json([
@@ -87,9 +87,15 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($projectId)
     {
-        //
+        // dd($projectId);
+        $project = Project::findOrFail($projectId);
+
+        // Tarefas do mesmo projeto que podem ser predecessoras
+        $tasks = Task::where('project_id', $projectId)->get();
+
+        return view('tasks.create', compact('project', 'tasks'));
     }
 
     /**
@@ -226,13 +232,46 @@ class TaskController extends Controller
 
     public function updateStatus(Request $request, Task $task)
     {
-
         try {
             $validated = $request->validate([
                 'status' => 'required|in:Pendente,Concluida,Em Andamento'
             ]);
 
-            $task->status = $validated['status'];
+            $newStatus = $validated['status'];
+            $currentStatus = $task->status;
+
+            // Validação ao concluir tarefa
+            if ($newStatus === 'Concluida') {
+                if ($task->predecessor && $task->predecessor->status !== 'Concluida') {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Não é possível concluir esta tarefa pois a predecessora ainda não está concluída.'
+                    ], 400);
+                }
+
+                foreach ($task->dependents as $dependent) {
+                    if ($dependent->status === 'Concluida') {
+                        return response()->json([
+                            'status' => 'error',
+                            'message' => 'Não é possível concluir esta tarefa pois há dependentes já concluídos.'
+                        ], 400);
+                    }
+                }
+            }
+
+            // Validação ao reabrir tarefa (de Concluida para outro status)
+            if ($currentStatus === 'Concluida' && $newStatus !== 'Concluida') {
+                foreach ($task->dependents as $dependent) {
+                    if ($dependent->status === 'Concluida') {
+                        return response()->json([
+                            'status' => 'error',
+                            'message' => 'Não é possível reabrir esta tarefa pois há dependentes já concluídos.'
+                        ], 400);
+                    }
+                }
+            }
+
+            $task->status = $newStatus;
             $task->save();
 
             return response()->json([
@@ -256,6 +295,7 @@ class TaskController extends Controller
             ], 500);
         }
     }
+
 
     /**
      * Remove the specified resource from storage.

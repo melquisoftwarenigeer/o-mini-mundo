@@ -48,12 +48,12 @@ Route::middleware('jwt.web')->group(function () {
 
 Route::middleware('jwt.web')->group(function () {
     Route::view('/projects/{projectId}/tasks', 'tasks.index')->name('tasks.index');
-    Route::view('/projects/{projectId}/tasks/create', 'tasks.create')->name('tasks.create');
+    Route::get('/projects/{projectId}/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::get('/projects/{projectId}/tasks/{taskId}/edit', [TaskController::class, 'edit'])->name('tasks.edit');    
 
 
     Route::get('/tasks/{taskId}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
     Route::get('/tasks', [TaskController::class, 'indexAll'])->name('tasks.indexall');
-    Route::patch('/tasks/{task}/status', [TaskController::class, 'updateStatus']);
+    Route::patch('/tasks/{task}/status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
 
 });

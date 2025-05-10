@@ -150,4 +150,49 @@ class TaskApiTest extends TestCase
                 'message' => 'Não é possível excluir a tarefa pois ela é predecessora de outra.'
             ]);
     }
+
+    public function test_does_not_allow_completing_dependent_with_pending_predecessor()
+    {
+        $predecessora = Task::factory()->create(['status' => 'Pendente']);
+        $dependente = Task::factory()->create([
+            'status' => 'Pendente',
+            'predecessor_id' => $predecessora->id
+        ]);
+
+        $response = $this->patchJson(route('tasks.updateStatus', $dependente), [
+            'status' => 'Concluida'
+        ], $this->headers);
+
+        $response->assertStatus(400)
+            ->assertJson([
+                'status' => 'error',
+                'message' => 'Não é possível concluir esta tarefa pois a predecessora ainda não está concluída.'
+            ]);
+
+        $this->assertDatabaseHas('tasks', [
+            'id' => $dependente->id,
+            'status' => 'Pendente',
+        ]);
+    }
+
+    public function test_does_not_allow_reopening_dependent_with_completed_predecessor()
+    {
+        $predecessora = Task::factory()->create(['status' => 'Concluida']);
+        $dependente = Task::factory()->create(['status' => 'Concluida', 'predecessor_id' => $predecessora->id]);
+
+        $response = $this->patchJson(route('tasks.updateStatus', $predecessora), [
+            'status' => 'Pendente'
+        ], $this->headers);
+
+        $response->assertStatus(400)
+            ->assertJson([
+                'status' => 'error',
+                'message' => 'Não é possível reabrir esta tarefa pois há dependentes já concluídos.'
+            ]);
+
+        $this->assertDatabaseHas('tasks', [
+            'id' => $dependente->id,
+            'status' => 'Concluida'
+        ]);
+    }
 }
