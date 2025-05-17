@@ -2,51 +2,39 @@
   <img src="https://github.com/user-attachments/assets/bde9e4c8-70a1-46a3-ac5f-d05d3ed93477" alt="Codificando..." />
 </p>
 
-# 🚀 Mini Mundo
 
-Projeto de laboratório para testes e validações técnicas com Laravel + Docker + PostgreSQL.
+# 🚀 Mini Mundo - Projeto de Laboratório para Testes e Avaliações Técnicas  
 
----
+## 📌 Sobre o Projeto  
 
-## 📌 Sobre o Projeto
-
-O **Mini Mundo** é uma aplicação backend construída em Laravel, idealizada para fins educacionais e de avaliação técnica. Ele simula um ambiente real de desenvolvimento com foco em:
-
-- Boas práticas de versionamento
-- Testes automatizados
-- Deploy contínuo com Docker e GitHub Actions
-- Integração com banco de dados PostgreSQL
-- Autenticação via JWT
-- Gerenciamento de dependências com Composer e NPM
-
----
+O **Mini Mundo** é um projeto de laboratório destinado a testes e implementações de validação técnica para seleção de desenvolvedores. Ele permite avaliar candidatos por meio da implementação de **issues específicas**, garantindo que sigam boas práticas de desenvolvimento, versionamento e deploy contínuo.
 
 ## 🛠️ Tecnologias Utilizadas
 
-- ⚙️ **Laravel 10+**
+- ⚙️ **Laravel**
 - 🐘 **PostgreSQL**
-- 🐳 **Docker + Docker Compose**
+- 🐳 **Docker + Docker Compose + DockerHub**
 - 📦 **Composer** (PHP)
 - ⚡ **Vite** (compilação frontend)
-- 🔐 **JWT Authentication**
+- 🔐 **JWT Authentication** (Autenticação Segura)
 - 🧪 **PHPUnit** (testes)
 - 🚀 **CI/CD com GitHub Actions**
 - 📤 **Publicação no Docker Hub**
 
----
+## 🧱 Arquitetura do Container
 
-## 🧱 Arquitetura dos Containers
+   📦 Build e Push da Imagem Docker:
+           Autenticação Login no Docker Hub	
+           Usando secrets configurados no GitHub
+           (DOCKER_USERNAME e DOCKER_PASSWORD).
+    
+   📦 Build da Imagem Docker: 
+           A imagem da aplicação é construída com base 
+           em um Dockerfile localizado em dockerfiles/php
 
-┌──────────────────────────────────────────────────┐
-│                  NGINX (porta 80)                │
-│        (Reverse Proxy + Servidor HTTP)           │
-└──────────────┬───────────────────────────────────┘
-               │
-        ┌──────▼─────┐     ┌────────────────────┐
-        │  PHP-FPM   │     │    PostgreSQL      │
-        │ (Laravel)  │     │ (porta 5432:15432) │
-        └────────────┘     └────────────────────┘
-
+   ⚡ Push da Imagem para o Docker Hub:
+           Após o build, a imagem é enviada para 
+           o repositório melquidocker/o-mini-mundo.
 
 🚀 Como rodar o projeto localmente
 ## 1️⃣ Clone o projeto
@@ -62,7 +50,7 @@ O **Mini Mundo** é uma aplicação backend construída em Laravel, idealizada p
     -php artisan key:generate
     -php artisan jwt:secret
 
-## 3️⃣.1️⃣ Configure o banco de dados (PostgreSQL / Docker) OP1
+## 3️⃣.1️ Configure o banco de dados (PostgreSQL / Docker) OP1
  
     DB_CONNECTION=pgsql
     DB_HOST=postgres  
@@ -76,7 +64,7 @@ O **Mini Mundo** é uma aplicação backend construída em Laravel, idealizada p
     Obs.: Acima descrito dados de host e port, para fins de teste           
           exemplo no SGBD com a imagem do docker rodando.         
     
-## 3️⃣.2️⃣ Configure o banco de dados (PostgreSQL / Laravel) OP2
+## 3️⃣.2️ Configure o banco de dados (PostgreSQL / Laravel) OP2
  
     DB_CONNECTION=pgsql
     DB_HOST=127.0.0.1
@@ -84,9 +72,6 @@ O **Mini Mundo** é uma aplicação backend construída em Laravel, idealizada p
     DB_DATABASE=LaravelPipe
     DB_USERNAME=postgres
     DB_PASSWORD=123456
-
-## 5️⃣ Deseja Subir o Servidor com Docker? OP1
-
 
 ## 5️⃣ Deseja Subir o Servidor com Docker? OP1
 
