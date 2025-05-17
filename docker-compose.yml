@@ -39,7 +39,7 @@ services:
     networks:
       - laravel_app
     ports:
-      - "5432:5432"
+      - "15432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data # Volumes persistentes para os dados
 
