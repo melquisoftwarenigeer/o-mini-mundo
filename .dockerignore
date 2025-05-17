@@ -1,0 +1,17 @@
+node_modules
+vendor
+.env
+.env.*
+Dockerfile
+docker-compose.yml
+.dockerignore
+*.log
+*.lock
+.idea
+.vscode
+.git
+.gitignore
+storage/*
+!storage/app
+!storage/framework
+!storage/logs
