@@ -23,18 +23,25 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
 
 ## 🧱 Arquitetura do Container
 
-   📦 Build e Push da Imagem Docker:
-           Autenticação Login no Docker Hub	
-           Usando secrets configurados no GitHub
-           (DOCKER_USERNAME e DOCKER_PASSWORD).
-    
-   📦 Build da Imagem Docker: 
-           A imagem da aplicação é construída com base 
-           em um Dockerfile localizado em dockerfiles/php
+---
 
-   ⚡ Push da Imagem para o Docker Hub:
-           Após o build, a imagem é enviada para 
-           o repositório melquidocker/o-mini-mundo.
+  ## 📦 Build e Push da Imagem Docker:
+
+      -Autenticação Login no Docker Hub	
+      -Usando secrets configurados no GitHub
+      -(DOCKER_USERNAME e DOCKER_PASSWORD).
+    
+  ## 📦 Build da Imagem Docker: 
+          
+      -A imagem da aplicação é construída com base 
+      -em um Dockerfile localizado em dockerfiles/php
+
+  ## ⚡ Push da Imagem para o Docker Hub:
+
+      -Após o build, a imagem é enviada para 
+      -o repositório melquidocker/o-mini-mundo.
+
+---
 
 🚀 Como rodar o projeto localmente
 ## 1️⃣ Clone o projeto
