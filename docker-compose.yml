@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: dockerfiles/php/Dockerfile
-    image: application
+    image: melquidocker/o-mini-mundo
     container_name: application
     tty: true
     ports:
