@@ -5,10 +5,11 @@
 
 # 🚀 Mini Mundo - Projeto de Laboratório para Testes e Avaliações Técnicas  
 
-# ✍️ Autor 
+## ✍️ Autor 
+ **Melquisedeque Bispo de Jesus**
 
     -Este projeto é mantido como parte de um portfólio técnico, com práticas mais atuais no mercado de desenvolvimento.
- **Melquisedeque Bispo de Jesus**
+
 
 # 📌 Sobre o Projeto  
 
@@ -85,14 +86,15 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
     Execute em 2 terminais no seu editor de código para o FrontEnd e BackEnd 🧑 
 
     -🖥️ Terminal 1 — Backend 
-    -1-Docker instalado e em funcionamento em sua máquina.
-    -2-docker compose up -d (Para montar a imagem)
-    -3-docker ps            (Para validar se a imagem foi montada)    
-    -4-docker compose exec app php artisan migrate
+    -1 Docker instalado e em funcionamento em sua máquina.
+    -2 docker compose up -d (Para montar a imagem)
+    -3 docker ps            (Para validar se a imagem foi montada)    
+    -4 docker compose exec app php artisan migrate (Para migrar tabelas no banco de dados)
+        Certifique antes de que criou o banco de dados pelo SGBD
 
     -🖥️ Terminal 2 — Frontend 
-    -1-npm run dev (VITE)
-    -2-http://localhost (Acessar aplicação)
+    -1 npm run dev (VITE)
+    -2 http://localhost (Acessar aplicação)
 
       Obs. Ao abrir a url
          Aguarde o FrontEnd renderizar totalmente para carregar depenências do Axios.   
@@ -112,7 +114,7 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
     Execute em 2 terminais no seu editor de código, para o FrontEnd e BackEnd 🧑
 
     -🖥️ Terminal 1 — Backend
-    -1-php artisan migrate (Certifique de que criou o banco de dados pelo SGBD) 
+    -1-php artisan migrate (Certifique antes de que criou o banco de dados pelo SGBD) 
     -2-php artisan serve 
 
     -🖥️ Terminal 2 — Frontend 
@@ -150,13 +152,13 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
     -Após o download, execute a imagem em um contêiner com o seguinte comando:🖥️
 
     -🖥️ Terminal 1 - BackEnd
-    -1-Docker instalado e em funcionamento em sua máquina.
-    -2-docker compose up -d (subir imagem)
-    -3-docker ps (Para validar se a imagem foi montada)    
-    -4-docker compose exec app php artisan migrate (Certifique de que criou o banco de dados pelo SGBD) 
+    -1 Docker instalado e em funcionamento em sua máquina.
+    -2 docker compose up -d (subir imagem)
+    -3 docker ps (Para validar se a imagem foi montada)    
+    -4 docker compose exec app php artisan migrate (Certifique de que criou o banco de dados pelo SGBD) 
 
     -🖥️ Terminal 2 — FrontEnd 
-    -2-npm run dev (VITE)
+    -2 npm run dev (VITE)
 
     -O '-d' executa o contêiner em segundo plano (modo "detached").
 
