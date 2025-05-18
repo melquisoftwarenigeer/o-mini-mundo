@@ -27,8 +27,8 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
 
   # 📦 Build e Push da Imagem Docker:
 
-      -Autenticação Login no Docker Hub	Usando secrets configurados no GitHub
-      -(DOCKER_USERNAME e DOCKER_PASSWORD).
+      -Autenticação Login no Docker Hub 
+      -Usando secrets configurados no GitHub (DOCKER_USERNAME e DOCKER_PASSWORD)
     
   # 📦 Build da Imagem Docker: 
           
