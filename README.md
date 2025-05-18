@@ -5,42 +5,47 @@
 
 # 🚀 Mini Mundo - Projeto de Laboratório para Testes e Avaliações Técnicas  
 
-## 📌 Sobre o Projeto  
+# ✍️ Autor 
+
+    -Este projeto é mantido como parte de um portfólio técnico, com práticas mais atuais no mercado de desenvolvimento.
+ **Melquisedeque Bispo de Jesus**
+
+# 📌 Sobre o Projeto  
 
 O **Mini Mundo** é um projeto de laboratório destinado a testes e implementações de validação técnica para seleção de desenvolvedores. Ele permite avaliar candidatos por meio da implementação de **issues específicas**, garantindo que sigam boas práticas de desenvolvimento, versionamento e deploy contínuo.
 
-## 🛠️ Tecnologias Utilizadas
+# 🛠️ Tecnologias Utilizadas
 
 - ⚙️ **Laravel**
 - 🐘 **PostgreSQL**
 - 🐳 **Docker + Docker Compose + DockerHub**
 - 📦 **Composer** (PHP)
-- ⚡ **Vite** (compilação frontend)
+- ⚡ **Vite** (compilação frontend - NPM)
 - 🔐 **JWT Authentication** (Autenticação Segura)
 - 🧪 **PHPUnit** (testes)
 - 🚀 **CI/CD com GitHub Actions**
-- 📤 **Publicação no Docker Hub**
+- 📤 **Publicação/Atualização no Docker Hub pós Pull Requests**
 
 ---
 
-## 🧱 Arquitetura do Container
+# 🧱 Arquitetura do Container
 
-  # 📦 Build e Push da Imagem Docker:
+  ## 📦 Build e Push da Imagem Docker:
 
       -Autenticação Login no Docker Hub 
       -Usando secrets configurados no GitHub (DOCKER_USERNAME e DOCKER_PASSWORD)
     
-  # 📦 Build da Imagem Docker: 
+  ## 📦 Build da Imagem Docker: 
           
       -A imagem da aplicação é construída com base em um Dockerfile localizado em dockerfiles/php 
 
-  # ⚡ Push da Imagem para o Docker Hub:
+  ## ⚡ Push da Imagem para o Docker Hub:
 
-      -Após o build, a imagem é enviada para o repositório melquidocker/o-mini-mundo.
+      -Após o 'Pull requests' no código do projeto, a imagem é enviada/atualizada para o repositório melquidocker/o-mini-mundo.
 
 ---
 
-🚀 Como rodar o projeto localmente
+#🚀 Como rodar o projeto localmente
 ## 1️⃣ Clone o projeto
 
     -git clone https://github.com/melquisoftwarenigeer/o-mini-mundo.git
@@ -119,11 +124,13 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
 
 ---
 
-## 5️⃣ 🧪 Como utilizar a imagem Docker o-mini-mundo -- pull do DockerHub
+# 5️⃣  Pull do DockerHub 🐳  Como utilizar 🧪
 
-    -Esta imagem Docker foi criada para facilitar a execução do projeto Mini Mundo em contêineres, ela esta em integração continua a cada pull request no GitHub Action. 
+    -Esta imagem Docker foi criada e disponibilizada no DockerHub para facilitar a execução do projeto Mini Mundo em contêineres. 
     
-    -Siga os passos abaixo se quiser utilizá-la pelo DockerHub em seu ambiente local.
+    -Siga os passos abaixo se quiser utilizá-la pelo DockerHub e baixar em seu ambiente local
+    
+    -Possui integração continua a cada pull request no GitHub Action.
 
 ## 🔧 Pré-requisitos
 
@@ -170,11 +177,6 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
     -docker compose down -v
 
 ---
-
-## ✍️ Autor
-    
-    Melquisedeque Bispo de Jesus
-    Este projeto é mantido como parte de um portfólio técnico e pode ser usado em processos seletivos ou provas práticas.
 
 ## 📄 Licença
   
