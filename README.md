@@ -12,7 +12,7 @@
 
 # 📌 Sobre o Projeto  
 
-    -O **Mini Mundo** é um projeto destinado a implementações de abordagem conteporânea de desenvolvimento envolvendo seguintes caracteristicas.
+    -O Mini Mundo é um projeto destinado a implementações de abordagem conteporânea de desenvolvimento envolvendo seguintes caracteristicas.
 
 ✅ Uso de Conventional Commit e **Gitflow** para organização e clareza no histórico de mudanças.
 
