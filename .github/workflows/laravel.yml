@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - develop  # permite que pushes em develop também disparem a pipeline
   pull_request:
     branches:
       - main
+      - develop  # ativa a pipeline quando houver PRs para develop
 
 jobs:
   #Job de build e testes da aplicação Laravel
