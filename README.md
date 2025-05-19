@@ -3,18 +3,29 @@
 </p>
 
 
-# 🚀 Mini Mundo - Projeto de Laboratório para Testes e Avaliações Técnicas  
+# 🚀 Mini Mundo  
 
 ## ✍️ Autor 
  **Melquisedeque Bispo de Jesus**
 
-    -Este projeto é mantido como parte de um portfólio técnico, com práticas mais atuais no mercado de desenvolvimento.
-
+    -Este projeto é mantido como portfólio técnico, com práticas modernas atuais no mercado de desenvolvimento.
 
 # 📌 Sobre o Projeto  
 
-O **Mini Mundo** é um projeto de laboratório destinado a testes e implementações de validação técnica para seleção de desenvolvedores. Ele permite avaliar candidatos por meio da implementação de **issues específicas**, garantindo que sigam boas práticas de desenvolvimento, versionamento e deploy contínuo.
+-O **Mini Mundo** é um projeto destinado a implementações de abordagem conteporânea de desenvolvimento envolvendo seguintes caracteristicas.
 
+✅ Uso de Conventional Commit e **Gitflow** para organização e clareza no histórico de mudanças.
+
+✅ Implementação de autenticação via **JWT** para proteção de rotas e validação de requisições.
+
+✅ Criação de imagem **Docker** do projeto após a compilação.
+
+✅ Publicação da imagem no **Docker Hub** para facilitar sua distribuição e reutilização.
+
+✅ Configuração de **CI/CD** para automação do build e versionamento da imagem via push com tags semânticas.
+
+✅ **CRUD** de gerenciamento de projeos com gestão de tarefa e status de concluído. Partindo da área de login ao dashboard.
+    
 # 🛠️ Tecnologias Utilizadas
 
 - ⚙️ **Laravel**
@@ -27,25 +38,6 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
 - 🚀 **CI/CD com GitHub Actions**
 - 📤 **Publicação/Atualização no Docker Hub pós Pull Requests**
 
----
-
-# 🧱 Arquitetura do Container
-
-  ## 📦 Build e Push da Imagem Docker:
-
-      -Autenticação Login no Docker Hub 
-      -Usando secrets configurados no GitHub (DOCKER_USERNAME e DOCKER_PASSWORD)
-    
-  ## 📦 Build da Imagem Docker: 
-          
-      -A imagem da aplicação é construída com base em um Dockerfile localizado em dockerfiles/php 
-
-  ## ⚡ Push da Imagem para o Docker Hub:
-
-      -Após o 'Pull requests' no código do projeto, a imagem é enviada/atualizada para o repositório melquidocker/o-mini-mundo.
-
----
-
 #🚀 Como rodar o projeto localmente
 ## 1️⃣ Clone o projeto
 
@@ -54,7 +46,6 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
 
 **Obs.**
     -É importante que a pasta do projeto 'o-mini-mundo' seja montada na raiz, para testes e dependência!
-
 
 ## 2️⃣ Instale as dependências Laravel
 
@@ -126,6 +117,23 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
     
     Obs. Ao abrir a url
          Aguarde o FrontEnd renderizar totalmente para carregar depenências do Axios.
+
+---
+
+# 🧱 Arquitetura do Container
+
+  ## 📦 Build e Push da Imagem Docker:
+
+      -Autenticação Login no Docker Hub 
+      -Usando secrets configurados no GitHub (DOCKER_USERNAME e DOCKER_PASSWORD)
+    
+  ## 📦 Build da Imagem Docker: 
+          
+      -A imagem da aplicação é construída com base em um Dockerfile localizado em dockerfiles/php 
+
+  ## ⚡ Push da Imagem para o Docker Hub:
+
+      -Após o 'Pull requests' no código do projeto, a imagem é enviada/atualizada para o repositório melquidocker/o-mini-mundo.
 
 ---
 
