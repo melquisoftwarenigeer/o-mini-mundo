@@ -78,42 +78,24 @@ jobs:
 
   # Job de build/push da imagem Docker (executado só se os testes passarem)
   docker_build_and_push:
-  runs-on: ubuntu-latest
-  needs: build  # Só roda se o job 'build' anterior for bem-sucedido
+    runs-on: ubuntu-latest
+    needs: build  # Executa somente se o job 'build' for bem-sucedido
 
-  steps:
-    # Clona o repositório (necessário pois cada job é executado em um runner limpo)
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    steps:
+      # Passo 1: Clona novamente o repositório (obrigatório em jobs separados)
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    # Ativa o Docker Buildx, que é uma ferramenta para builds avançados com cache
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+      # Passo 2: Loga no Docker Hub com secrets do GitHub
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-    # Faz login no Docker Hub usando secrets armazenados no GitHub
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      # Passo 3: Builda a imagem Docker da aplicação
+      - name: Build Docker image
+        run: |
+          docker build -t melquidocker/o-mini-mundo:latest -f dockerfiles/php/Dockerfile .
 
-    # Cache para camadas Docker: salva em /tmp/.buildx-cache
-    # Isso permite reutilizar camadas de builds anteriores para acelerar o processo
-    - name: Cache Docker layers
-      uses: actions/cache@v3
-      with:
-        path: /tmp/.buildx-cache  # Caminho onde o BuildKit salva cache local
-        key: ${{ runner.os }}-buildx-${{ github.sha }}  # Chave de cache única por commit
-        restore-keys: |
-          ${{ runner.os }}-buildx-  # Fallback para reusar cache de execuções anteriores
-
-    # Builda e envia a imagem Docker com suporte a cache
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v5
-      with:
-        context: .  # Diretório base para o build
-        file: dockerfiles/php/Dockerfile  # Caminho para o Dockerfile
-        push: true  # Envia a imagem para o Docker Hub após build
-        tags: melquidocker/o-mini-mundo:latest  # Nome da imagem + tag
-        cache-from: type=local,src=/tmp/.buildx-cache  # Usa cache salvo previamente
-        cache-to: type=local,dest=/tmp/.buildx-cache  # Salva novo cache para futuras execuções
+      # Passo 4: Envia a imagem ao Docker Hub
+      - name: Push Docker image
+        run: |
+          docker push melquidocker/o-mini-mundo:latest
