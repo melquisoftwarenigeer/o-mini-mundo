@@ -52,6 +52,9 @@ O **Mini Mundo** é um projeto de laboratório destinado a testes e implementaç
     -git clone https://github.com/melquisoftwarenigeer/o-mini-mundo.git
     -cd o-mini-mundo
 
+**Obs.**
+    -É importante que a pasta do projeto 'o-mini-mundo' seja montada na raiz, para testes e dependência!
+
 
 ## 2️⃣ Instale as dependências Laravel
 
