@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  # 🧪 Job de build e testes da aplicação Laravel
+  #Job de build e testes da aplicação Laravel
   build:
     runs-on: ubuntu-latest
 
@@ -17,6 +17,15 @@ jobs:
       # Passo 1: Clona o repositório
       - name: Check out the code
         uses: actions/checkout@v2
+
+      #Caching de dependências para acelerar o tempo de execução  
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.composer/cache
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
       # Passo 2: Configura ambiente PHP
       - name: Set up PHP
@@ -65,7 +74,7 @@ jobs:
           php artisan migrate
           php artisan test
 
-  # 📦 Job de build/push da imagem Docker (executado só se os testes passarem)
+  # Job de build/push da imagem Docker (executado só se os testes passarem)
   docker_build_and_push:
     runs-on: ubuntu-latest
     needs: build  # Executa somente se o job 'build' for bem-sucedido
