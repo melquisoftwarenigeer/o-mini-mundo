@@ -4,11 +4,14 @@ on:
   push:
     branches:
       - main
-      - develop  # permite que pushes em develop também disparem a pipeline
+      - develop 
+    tags:        
+      - '*'     
+
   pull_request:
     branches:
       - main
-      - develop  # ativa a pipeline quando houver PRs para develop
+      - develop  
 
 jobs:
   #Job de build e testes da aplicação Laravel
@@ -77,15 +80,27 @@ jobs:
           php artisan test
 
   # Job de build/push da imagem Docker (executado só se os testes passarem)
-    # Job de build/push da imagem Docker (executado só se os testes passarem)
   docker_build_and_push:
     runs-on: ubuntu-latest
     needs: build  # Só roda se o job 'build' anterior for bem-sucedido
+
+    #tag (evita execuções indevidas)
+    if: github.ref_type == 'tag' && startsWith(github.ref, 'refs/tags/')
 
     steps:
       # Clona o repositório (necessário pois cada job é executado em um runner limpo)
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      # Validação do padrão da tag com regex
+      - name: Validate tag format
+        run: |
+          TAG_NAME="${GITHUB_REF##*/}"
+          echo "🔍 Validando tag: $TAG_NAME"
+          if [[ ! "$TAG_NAME" =~ ^(v|V)?([0-9]+\.)?([0-9]+\.)?(\*|[0-9]+)\.?(hf[0-9]+|Hf[0-9]+|HF[0-9]+)?$ ]]; then
+            echo "❌ Tag inválida. Formato esperado: v1.0.0, 1.2.3hf1, etc."
+            exit 1
+          fi
 
       # Ativa o Docker Buildx, que é uma ferramenta para builds avançados com cache
       - name: Set up Docker Buildx
@@ -107,13 +122,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
-      # Builda e envia a imagem Docker com suporte a cache
+      #Envia imagem Docker com a tag do commit
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           file: dockerfiles/php/Dockerfile
           push: true
-          tags: melquidocker/o-mini-mundo:latest
+          tags: melquidocker/o-mini-mundo:${{ github.ref_name }}  # Usa a tag como versão da imagem
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
