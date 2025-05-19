@@ -12,7 +12,7 @@
 
 # 📌 Sobre o Projeto  
 
--O **Mini Mundo** é um projeto destinado a implementações de abordagem conteporânea de desenvolvimento envolvendo seguintes caracteristicas.
+    -O **Mini Mundo** é um projeto destinado a implementações de abordagem conteporânea de desenvolvimento envolvendo seguintes caracteristicas.
 
 ✅ Uso de Conventional Commit e **Gitflow** para organização e clareza no histórico de mudanças.
 
@@ -25,6 +25,8 @@
 ✅ Configuração de **CI/CD** para automação do build e versionamento da imagem via push com tags semânticas.
 
 ✅ **CRUD** de gerenciamento de projeos com gestão de tarefa e status de concluído. Partindo da área de login ao dashboard.
+
+---
     
 # 🛠️ Tecnologias Utilizadas
 
@@ -38,7 +40,10 @@
 - 🚀 **CI/CD com GitHub Actions**
 - 📤 **Publicação/Atualização no Docker Hub pós Pull Requests**
 
-#🚀 Como rodar o projeto localmente
+---
+
+# 🚀 Como rodar o projeto localmente
+
 ## 1️⃣ Clone o projeto
 
     -git clone https://github.com/melquisoftwarenigeer/o-mini-mundo.git
